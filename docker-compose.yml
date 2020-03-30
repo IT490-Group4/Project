@@ -1,10 +1,37 @@
 version: '3'
 services:
-    messaging:
+    messaging1:
+        hostname: messaging1
         build: './rabbitmq'
         ports:
           - "5672:5672"
           - "15672:15672"
+        environment:
+            - ERLANG_COOKIE=abcdefg  
+    messaging2:
+        hostname: messaging2
+        build: './rabbitmq'
+        ports:
+          - "5673:5672"
+          - "15673:15672"
+        links:
+            - messaging1
+        environment:
+            - ERLANG_COOKIE=abcdefg
+            - CLUSTER_WITH=messaging1
+            - ENABLE_RAM=true    
+    messaging3:
+        hostname: messaging1
+        build: './rabbitmq'
+        ports:
+           - "5674:5672"
+          
+        links:
+           - messaging1
+           - messaging2
+        environment:
+           - ERLANG_COOKIE=abcdefg
+    
     mysql:
         image: 'mysql'
         environment:
@@ -29,7 +56,7 @@ services:
     recieveauth:
         build: './Backend/loginAuth'
 
-    receiveregis:
+    receiveregis: 
         build: './Backend/ReceiveRegistration'
 
     sendregis:
