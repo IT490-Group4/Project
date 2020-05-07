@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+
+ web:
+  image: hello-world-nginx
+
+ database:
+  image: mysql
+
+
