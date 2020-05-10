@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-end-send-registration
+  labels:
+    app: back-end-send-registration
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: back-end-send-registration
+  template:
+    metadata:
+      labels:
+        app: back-end-send-registration
+    spec:
+      containers:
+        - name: back-end-send-registration
+          image: send_registration
+          imagePullPolicy: Never
+          env:

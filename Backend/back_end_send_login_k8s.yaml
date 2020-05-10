@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-end-send-login
+  labels:
+    app: back-end-send-login
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: back-end-send-login
+  template:
+    metadata:
+      labels:
+        app: back-end-send-login
+    spec:
+      containers:
+        - name: back-end-send-login
+          image: send_login
+          imagePullPolicy: Never
+          env:

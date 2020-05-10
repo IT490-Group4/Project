@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-end-regis-auth
+  labels:
+    app: back-end-regis-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: back-end-regis-auth
+  template:
+    metadata:
+      labels:
+        app: back-end-regis-auth
+    spec:
+      containers:
+        - name: back-end-regis-auth
+          image: regis_auth
+          imagePullPolicy: Never
+          env:

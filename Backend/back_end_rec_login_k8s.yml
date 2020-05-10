@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-end-rec-login
+  labels:
+    app: back-end-rec-login
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: back-end-rec-login
+  template:
+    metadata:
+      labels:
+        app: back-end-rec-login
+    spec:
+      containers:
+        - name: back-end-rec-login
+          image: reclogin
+          imagePullPolicy: Never
+          env:
+          

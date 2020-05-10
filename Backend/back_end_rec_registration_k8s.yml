@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-end-rec-registration
+  labels:
+    app: back-end-rec-registration
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: back-end-rec-registration
+  template:
+    metadata:
+      labels:
+        app: back-end-rec-registration
+    spec:
+      containers:
+        - name: back-end-rec-registration
+          image: receive_registration
+          imagePullPolicy: Never
+          env:
+          
