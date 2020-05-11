@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deploy
+  labels:
+    app: flask
+spec:
+  selector:
+    matchLabels:
+      app: flask
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: flask
+    spec:
+      containers:
+      - name: app
+        image: python:alpine3.7
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
